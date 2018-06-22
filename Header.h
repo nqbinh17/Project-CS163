@@ -57,6 +57,41 @@ struct query
 //
 bool checkValidation(char x);//check if a valid char or not
 
+// Binh's
+
+struct Node
+{
+	string s;
+	Node *next;
+	Node()
+	{
+		next=NULL;
+	}
+};
+
+
+// Stopwords for feature 
+class LinkedList
+{
+private:
+	Node *head;
+	void InsertWords(string s,Node *&cur);
+public:
+	LinkedList()
+	{
+		head=NULL;
+	}
+	void RunInsertWords(string s);
+};
+struct StopWordChaining
+{
+private:
+	LinkedList arr[420];
+	
+public:
+	void RuncreateChaining();
+};
+
 
 
 #endif
