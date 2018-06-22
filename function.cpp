@@ -124,3 +124,50 @@ bool wordTrie::search(string s, wordNode *root)
 		}
 		return false;
 }
+
+// Binh's
+void LinkedList::InsertWords(string s,Node *&cur)
+{
+	if(cur==NULL)
+	{
+		cur=new Node;
+		cur->s=s;
+		return;
+	}
+	else InsertWords(s,cur->next);
+	return;
+}
+void LinkedList::RunInsertWords(string s)
+{
+	InsertWords(s,head);
+}
+
+
+void StopWordChaining::RuncreateChaining()
+{
+	ifstream fin;
+
+	fin.open("Stopwords.txt");
+	if(!fin.good())
+	{
+		cout<<" Stopword.txt ERROR!!";
+		exit(1);
+	}
+	while(!fin.eof())
+	{
+		string s;
+		getline(fin,s,'\n');
+		fin.ignore(100,'\n');
+		int t=s.length(),index=0;
+		for(int i=0;i<t;i++)
+		{
+			index+=s[i];
+		}
+		index=index%419;
+		arr[index].RunInsertWords(s);
+	}
+
+
+	fin.close();
+	return;
+}
